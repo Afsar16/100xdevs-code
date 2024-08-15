@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="userD"></div>
+    <button onclick="getData1()">Click Me</button>
+    <script>
+      function getData() {
+        // step 1
+        // alert("hi"); // for testing puspose
+        // const response = fetch("https://fakerapi.it/api/v1/persons");
+        // console.log(response); //promise pending bcoz this gives a promise
+        //step2
+        // fetch("https://fakerapi.it/api/v1/persons").then(function (response) {
+        //   console.log(response);
+        // });
+        // step 3
+        // fetch("https://fakerapi.it/api/v1/persons").then(function (response) {
+        //   const json = response.json();
+        //   console.log(json); // promise pending bcoz this also gives a promise
+        // });
+        //step 4
+        fetch("https://fakerapi.it/api/v1/persons").then(function (response) {
+          response.json().then(function (finalData) {
+            console.log(finalData); // status: 'OK', code: 200, total: 10, data: Array(10)}
+          });
+        });
+      }
+
+      // or
+
+      async function getData1() {
+        const data = await fetch("https://fakerapi.it/api/v1/persons");
+        const finalData = await data.json();
+        document.getElementById("userD").innerHTML = JSON.stringify(finalData);
+        // console.log(finalData);
+      }
+    </script>
+  </body>
+</html>
